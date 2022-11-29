@@ -311,14 +311,14 @@ img#nav_logo {
 
 #timetable{
   position: relative;
-  left: 10%;
+  left: 50px;
   min-width: 50%;
   border: 3px solid black;
   background-color: azure;
 }
 
 #timetable2{
-  margin-left: 10%;
+  margin-left: 20px;
   width: 80%;
   border: 3px solid black;
   background-color: azure;
