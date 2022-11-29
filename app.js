@@ -55,7 +55,7 @@ const profilephoto_storage = multer.diskStorage({
         cb(null, req.body.name + ".png")
     },
 });
-const profilephoto_upload = multer({storage: [profilephoto_storage]});
+const profilephoto_upload = multer({storage: profilephoto_storage});
 
 app.get("/", function(req,res){
     res.render("homepage");
