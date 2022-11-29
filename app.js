@@ -58,7 +58,11 @@ const profilephoto_storage = multer.diskStorage({
 const profilephoto_upload = multer({storage: profilephoto_storage});
 
 app.get("/", function(req,res){
-    res.render("homepage");
+    res.sendFile(__dirname + "/homepage.html");
+});
+
+app.get("/contact", function(req,res){
+    res.sendFile(__dirname + "/contact.html");
 });
 
 app.get("/login", function(req,res){
