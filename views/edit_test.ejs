@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Teachers Login</title>
+    <link rel="stylesheet" href="styles_overall.css">
+    <script type="text/javascript" src="jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="functions.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="overlay">
+        <div id="header">
+            
+        </div>
+    </div>
+    <div id="main">
+        
+        <div id="content">
+            <h1 style="margin-left:70px; margin-top:70px; font-size:50px"><%= subject %> Test</h1>
+            <form action="<%= redirect %>" method="post">
+                <input type="text" name="subject" value="<%= subject %>" style="display:none" />
+            <%  var i = 1;
+                data.forEach(myfunc);
+                function myfunc(x) { %>
+            <div class="question_bar">
+                <p class="questions_para" style="font-size: 50px">Question <%= i %></p>
+                <input type="text" class="questions" name="question<%= i %>" value="<%= x.Question %>" />
+                <p class="questions_para">Answer</p>
+                <input type="text" class="questions" name="answer<%= i %>" value="<%= x.Answer %>" />
+                <p class="questions_para">Option 1</p>
+                <input type="text" class="questions" name="question<%= i %>option1" value="<%= x.Option1 %>" />
+                <p class="questions_para">Option 2</p>
+                <input type="text" class="questions" name="question<%= i %>option2" value="<%= x.Option2 %>" />
+                <p class="questions_para">Option 3</p>
+                <input type="text" class="questions" name="question<%= i %>option3" value="<%= x.Option3 %>" />
+                <p class="questions_para">Option 4</p>
+                <input type="text" class="questions" name="question<%= i %>option4" value="<%= x.Option4 %>" />
+            </div>
+            <% i++; } %>
+            <input type="submit" class="btn btn-success" id="submit-button-test" value="Submit" />
+            </form>
+        </div>
+    </div>
+
+    <div id="footer">
+        
+    </div>
+</body>
+
+</html>

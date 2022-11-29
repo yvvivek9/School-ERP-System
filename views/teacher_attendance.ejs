@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Attendance</title>
+    <link rel="stylesheet" href="/styles_overall.css">
+    <script type="text/javascript" src="/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="/functions.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="header">
+        <div onclick="nav_bar()" style="flex: 55%">
+            <img id="nav_logo" src="/nav_logo.png">
+        </div>
+        <div style="flex: 7%">
+            <img src="/<%= data.Name %>.png" style="border-radius:50%; height:80px; margin-top:10px">
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p style="margin-top: 20px">Welcome <%= data.Name %> ,</p>
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Teacher ID: <%= data.TeacherID %>, </p>
+            <p>Subject: <%= data.Subject %>, </p>
+        </div>
+        <div style="flex: 4%">
+            <form id="logout" action="/login" method="get">
+                <img src="/logout.png" id="logout-button" onclick="logout()">
+            </form>
+        </div>
+    </div>
+    <div id="nav_menu">
+        <form action="/teacher/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Home">
+        </form>
+        <form action="/teacher/timetable/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Time Table" />
+        </form>
+        <form action="/teacher/attendance/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Attendance">
+        </form>
+        <form action="/teacher/results/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Results">
+        </form>
+        <form action="/teacher/notes/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Notes">
+        </form>
+        <form action="/teacher/assignments/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Assignments">
+        </form>
+        <form action="/teacher/gassignments/?id=<%= data._id %>&search=find" method="post">
+            <input type="submit" class="nav_menu_link" value="G.Assignments">
+        </form>
+        <form action="/teacher/testportal/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Test Portal">
+        </form>
+    </div>
+    <div id="main">
+        <div id="content">
+            <% if(!students && !edit) { %>
+            <form action="/teacher/attendance?id=<%= data._id %>&student=find" method="post">
+                <select name="class" class="dropdown">
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                    <option value="ntg" selected>Select Class</option>
+                </select>
+                <select name="section" class="dropdown">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="ntg" selected>Select Section</option>
+                </select>
+                <input type="submit" class="btn btn-success" style="margin-left: 5%;" value="Search" />
+            </form>
+            <% } else if(students) { 
+                students.forEach(showstudents);
+                function showstudents(x) { %>
+            <form action="/teacher/attendance?id=<%= data._id %>&student=edit&name=<%= x.Name %>" method="post">
+                <input type="submit" name="name" class="select-student" value="<%= x.Name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>" />
+            </form>
+            <% }} else if(edit) { %>
+                <form action="/teacher/editattendance?id=<%= data._id %>&name=<%= edit.Name %>" method="post">
+                <table id="timetable">
+                    <tbody>
+                        <tr>
+                            <th class="timetable table-heading">Subject</th>
+                            <th class="timetable table-heading">Attendance</th>
+                        </tr>
+                        <tr>
+                            <th class="timetable">English</th>
+                            <td class="timetable">
+                                <input type="text" name="english" value="<%= edit.Attendance.English %>" style="width: 100%; height: 100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="timetable">Hindi</th>
+                            <td class="timetable">
+                                <input type="text" name="hindi" value="<%= edit.Attendance.Hindi %>" style="width: 100%; height: 100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="timetable">Physics</th>
+                            <td class="timetable">
+                                <input type="text" name="physics" value="<%= edit.Attendance.Physics %>" style="width: 100%; height: 100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="timetable">Chemistry</th>
+                            <td class="timetable">
+                                <input type="text" name="chemistry" value="<%= edit.Attendance.Chemistry %>" style="width: 100%; height: 100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="timetable">Biology</th>
+                            <td class="timetable">
+                                <input type="text" name="biology" value="<%= edit.Attendance.Biology %>" style="width: 100%; height: 100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="timetable">Maths</th>
+                            <td class="timetable">
+                                <input type="text" name="maths" value="<%= edit.Attendance.Maths %>" style="width: 100%; height: 100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="timetable">Social</th>
+                            <td class="timetable">
+                                <input type="text" name="social" value="<%= edit.Attendance.Social %>" style="width: 100%; height: 100%" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="submit" class="btn btn-success" style="margin-left: 60%; margin-top: 50px;" />
+                </form>
+            <% } %>
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+
+</body>
+
+</html>

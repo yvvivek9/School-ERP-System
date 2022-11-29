@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Teacher Portal</title>
+    <link rel="stylesheet" href="/styles_overall.css">
+    <script type="text/javascript" src="/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="/functions.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="header">
+        <div onclick="nav_bar()" style="flex: 55%">
+            <img id="nav_logo" src="/nav_logo.png">
+        </div>
+        <div style="flex: 7%">
+            <img src="/<%= data.Name %>.png" style="border-radius:50%; height:80px; margin-top:10px">
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p style="margin-top: 20px">Welcome <%= data.Name %> ,</p>
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Teacher ID: <%= data.TeacherID %>, </p>
+            <p>Subject: <%= data.Subject %>, </p>
+        </div>
+        <div style="flex: 4%">
+            <form id="logout" action="/login" method="get">
+                <img src="/logout.png" id="logout-button" onclick="logout()">
+            </form>
+        </div>
+    </div>
+    <div id="nav_menu">
+        <form action="/teacher/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Home">
+        </form>
+        <form action="/teacher/timetable/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Time Table" />
+        </form>
+        <form action="/teacher/attendance/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Attendance">
+        </form>
+        <form action="/teacher/results/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Results">
+        </form>
+        <form action="/teacher/notes/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Notes">
+        </form>
+        <form action="/teacher/assignments/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Assignments">
+        </form>
+        <form action="/teacher/gassignments/?id=<%= data._id %>&search=find" method="post">
+            <input type="submit" class="nav_menu_link" value="G.Assignments">
+        </form>
+        <form action="/teacher/testportal/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Test Portal">
+        </form>
+    </div>
+    <div id="main">
+        <div id="content" style="display: flex">
+            <table id="timetable">
+                <tbody>
+                    <tr>
+                        <th class="timetable table-heading"></th>
+                        <th class="timetable table-heading">Period 1</th>
+                        <th class="timetable table-heading">Period 2</th>
+                        <th rowspan="0" class="timetable  table-heading">Break</th>
+                        <th class="timetable table-heading">Period 3</th>
+                        <th class="timetable table-heading">Period 4</th>
+                        <th rowspan="0" class="timetable  table-heading">Lunch</th>
+                        <th class="timetable table-heading">Period 5</th>
+                        <th class="timetable table-heading">Period 6</th>
+                        <th rowspan="0" class="timetable  table-heading">Break</th>
+                        <th class="timetable table-heading">Period 7</th>
+                        <th class="timetable table-heading">Period 8</th>
+                    </tr>
+                    <tr>
+                        <th class="timetable table-heading">Mon</th>
+                        <% for(var i=0; i < 8; i++){ %>
+                            <td class="timetable">
+                                <%= data.TimeTable.Monday[i] %>
+                            </td>
+                            <% } %>
+                    </tr>
+                    <tr>
+                        <th class="timetable  table-heading">Tue</th>
+                        <% for(var i=0; i < 8; i++){ %>
+                            <td class="timetable">
+                                <%= data.TimeTable.Tuesday[i] %>
+                            </td class="timetable">
+                            <% } %>
+                    </tr>
+                    <tr>
+                        <th class="timetable table-heading">Wed</th>
+                        <% for(var i=0; i < 8; i++){ %>
+                            <td class="timetable">
+                                <%= data.TimeTable.Wednesday[i] %>
+                            </td>
+                            <% } %>
+                    </tr>
+                    <tr>
+                        <th class="timetable table-heading">Thurs</th>
+                        <% for(var i=0; i < 8; i++){ %>
+                            <td class="timetable">
+                                <%= data.TimeTable.Thursday[i] %>
+                            </td>
+                            <% } %>
+                    </tr>
+                    <tr>
+                        <th class="timetable table-heading">Fri</th>
+                        <% for(var i=0; i < 8; i++){ %>
+                            <td class="timetable">
+                                <%= data.TimeTable.Friday[i] %>
+                            </td>
+                            <% } %>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit TestPortal</title>
+    <link rel="stylesheet" href="/styles_overall.css">
+    <script type="text/javascript" src="/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="/functions.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="header">
+        <div onclick="nav_bar()" style="flex: 55%">
+            <img id="nav_logo" src="/nav_logo.png">
+        </div>
+        <div style="flex: 7%">
+            <img src="/<%= data.Name %>.png" style="border-radius:50%; height:80px; margin-top:10px">
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p style="margin-top: 20px">Welcome <%= data.Name %> ,</p>
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Teacher ID: <%= data.TeacherID %>, </p>
+            <p>Subject: <%= data.Subject %>, </p>
+        </div>
+        <div style="flex: 4%">
+            <form id="logout" action="/login" method="get">
+                <img src="/logout.png" id="logout-button" onclick="logout()">
+            </form>
+        </div>
+    </div>
+    <div id="nav_menu">
+        <form action="/teacher/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Home">
+        </form>
+        <form action="/teacher/timetable/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Time Table" />
+        </form>
+        <form action="/teacher/attendance/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Attendance">
+        </form>
+        <form action="/teacher/results/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Results">
+        </form>
+        <form action="/teacher/notes/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Notes">
+        </form>
+        <form action="/teacher/assignments/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Assignments">
+        </form>
+        <form action="/teacher/gassignments/?id=<%= data._id %>&search=find" method="post">
+            <input type="submit" class="nav_menu_link" value="G.Assignments">
+        </form>
+        <form action="/teacher/testportal/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Test Portal">
+        </form>
+    </div>
+    <div id="main" style="padding-top: 150px">
+        <div id="content">
+            <form action="/teacher/savetestportal?id=<%= data._id %>&class=<%= clas %>&subject=<%= subjec %>" method="post">
+                <h1 style="margin-left:70px; font-size:50px"><%= subjec %> test</h1>
+                <%  var i = 1;
+                    test.forEach(myfunc);
+                    function myfunc(x) { %>
+                <div class="question-bar">
+                    <p class="questions-para" style="font-size: 50px">Question <%= i %></p>
+                    <input type="text" class="questions" name="question<%= i %>" value="<%= x.Question %>" />
+                    <p class="questions-para">Answer</p>
+                    <input type="text" class="questions" name="answer<%= i %>" value="<%= x.Answer %>" />
+                    <p class="questions-para">Option 1</p>
+                    <input type="text" class="questions" name="question<%= i %>option1" value="<%= x.Option1 %>" />
+                    <p class="questions-para">Option 2</p>
+                    <input type="text" class="questions" name="question<%= i %>option2" value="<%= x.Option2 %>" />
+                    <p class="questions-para">Option 3</p>
+                    <input type="text" class="questions" name="question<%= i %>option3" value="<%= x.Option3 %>" />
+                    <p class="questions-para">Option 4</p>
+                    <input type="text" class="questions" name="question<%= i %>option4" value="<%= x.Option4 %>" />
+                </div>
+                <% i++; } %>
+                <input type="submit" class="btn btn-success" id="submit-button-test" value="Submit" />
+            </form>
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+
+</body>
+
+</html>

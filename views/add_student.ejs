@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Student</title>
+    <link rel="stylesheet" href="/styles_overall.css">
+    <script type="text/javascript" src="/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript">
+        function nav_bar() {
+            if (document.getElementById("nav_menu").style.width === "230px") {
+                document.getElementById("nav_menu").style.width = "0px";
+                $(".nav_menu_link").fadeOut(50);
+            }
+            else {
+                document.getElementById("nav_menu").style.width = "230px";
+                $(".nav_menu_link").delay(500).fadeIn(500);
+            }
+        }
+        function logout() {
+            document.getElementById("logout").submit();
+        }
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="header">
+        <div onclick="nav_bar()" style="flex: 55%">
+            <img id="nav_logo" src="/nav_logo.png">
+        </div>
+        <div style="flex: 7%">
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Welcome Admin,</p>
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+
+        </div>
+        <div style="flex: 4%">
+            <form id="logout" action="/login" method="get">
+                <img src="/logout.png" id="logout-button" onclick="logout()">
+            </form>
+        </div>
+    </div>
+    <div id="nav_menu">
+        <form action="/admin/add-student" method="post">
+            <input type="submit" class="nav_menu_link" value="Add Student" />
+        </form>
+        <form action="/admin/remove-student" method="post">
+            <input type="submit" class="nav_menu_link" value="Remove Student" />
+        </form>
+        <form action="/admin/add-teacher" method="post">
+            <input type="submit" class="nav_menu_link" value="Add Teacher" />
+        </form>
+        <form action="/admin/remove-teacher" method="post">
+            <input type="submit" class="nav_menu_link" value="Remove Teacher" />
+        </form>
+    </div>
+    <div id="main">
+        <div id="content">
+            <form action="/admin/add-student/save" method="post" enctype="multipart/form-data">
+                <label class="add-data">Enter Student-ID: <input type="text" name="id" /></label><br>
+                <label class="add-data">Enter Student Name: <input type="text" name="name" /></label><br>
+                <label class="add-data">Student Photo: <input type="file" name="profile" /></label><br>
+                <label class="add-data">Enter Student Email: <input type="text" name="email" /></label><br>
+                <label class="add-data">Enter Student Password: <input type="text" name="password" /></label><br>
+                <label class="add-data">Enter Student Class: <input type="text" name="class" /></label><br>
+                <label class="add-data">Enter Student Section: <input type="text" name="section" /></label><br>
+                <table id="timetable2" style="width: 80%; margin-top: 50px;">
+                    <tbody>
+                        <tr>
+                            <th class="timetable2 table-heading"></th>
+                            <th class="timetable2 table-heading">Period 1</th>
+                            <th class="timetable2 table-heading">Period 2</th>
+                            <th rowspan="0" class="timetable2  table-heading">Break</th>
+                            <th class="timetable2 table-heading">Period 3</th>
+                            <th class="timetable2 table-heading">Period 4</th>
+                            <th rowspan="0" class="timetable2  table-heading">Lunch</th>
+                            <th class="timetable2 table-heading">Period 5</th>
+                            <th class="timetable2 table-heading">Period 6</th>
+                            <th rowspan="0" class="timetable  table-heading">Break</th>
+                            <th class="timetable2 table-heading">Period 7</th>
+                            <th class="timetable2 table-heading">Period 8</th>
+                        </tr>
+                        <tr>
+                            <th class="timetable2 table-heading">Mon</th>
+                            <% for(var i=1; i < 9; i++){ %>
+                                <td class="timetable2">
+                                    <input type="text" name="monday<%= i %>" />
+                                </td>
+                                <% } %>
+                        </tr>
+                        <tr>
+                            <th class="timetable2  table-heading">Tue</th>
+                            <% for(var i=1; i < 9; i++){ %>
+                                <td class="timetable2">
+                                    <input type="text" name="tuesday<%= i %>" />
+                                </td>
+                                <% } %>
+                        </tr>
+                        <tr>
+                            <th class="timetable2 table-heading">Wed</th>
+                            <% for(var i=1; i < 9; i++){ %>
+                                <td class="timetable2">
+                                    <input type="text" name="wednesday<%= i %>" />
+                                </td>
+                                <% } %>
+                        </tr>
+                        <tr>
+                            <th class="timetable2 table-heading">Thurs</th>
+                            <% for(var i=1; i < 9; i++){ %>
+                                <td class="timetable2">
+                                    <input type="text" name="thursday<%= i %>"
+                                </td>
+                                <% } %>
+                        </tr>
+                        <tr>
+                            <th class="timetable2 table-heading">Fri</th>
+                            <% for(var i=1; i < 9; i++){ %>
+                                <td class="timetable2">
+                                    <input type="text" name="friday<%= i %>" />
+                                </td>
+                                <% } %>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="submit" class="btn btn-success" value="Add" style="margin-left: 70%; font-size: 15px; margin-top: 30px;" />
+            </form>
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+
+</body>
+
+</html>

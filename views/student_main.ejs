@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Portal</title>
+    <link rel="stylesheet" href="/styles_overall.css">
+    <script type="text/javascript" src="/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="/functions.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script type="text/javascript">
+        var slideIndex = 1;
+        window.addEventListener("load", function () {
+            showSlides(slideIndex);
+            myTimer = setInterval(function () { plusSlides(1) }, 3000);
+        });
+    </script>
+</head>
+
+<body>
+    <div id="header">
+        <div onclick="nav_bar()" style="flex: 55%">
+            <img id="nav_logo" src="/nav_logo.png">
+        </div>
+        <div style="flex: 7%">
+            <img src="/<%= data.Name %>.png" style="border-radius:50%; height:80px; margin-top:10px">
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Welcome <%= data.Name %> ,</p>
+            <p>Class: <%= data.Class %> ,</p>
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Student ID: <%= data.StudentID %>, </p>
+            <p>Section: <%= data.Section %>, </p>
+        </div>
+        <div style="flex: 4%">
+            <form id="logout" action="/login" method="get">
+                <img src="/logout.png" id="logout-button" onclick="logout()">
+            </form>
+        </div>
+    </div>
+    <div id="nav_menu">
+        <form action="/student/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Home">
+        </form>
+        <form action="/student/timetable/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Time Table" />
+        </form>
+        <form action="/student/attendance/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Attendance">
+        </form>
+        <form action="/student/results/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Results">
+        </form>
+        <form action="/student/notes/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Notes">
+        </form>
+        <form action="/student/assignments/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Assignments">
+        </form>
+        <form action="/student/testportal/?id=<%= data._id %>&subject=search" method="post">
+            <input type="submit" class="nav_menu_link" value="Test Portal">
+        </form>
+    </div>
+    <div id="main">
+        <div id="content" style="display: flex">
+            <div id="announcments">
+                <div class="announcment-contents"
+                    style="background-color: rgb(107, 22, 22); color: white; border-radius: 10px; font-size: 30px;">
+                    <p>Announcements &#128226;</p>
+                </div>
+                <div class="announcment-contents">
+                    <p>&#8226; <%= data.Announcements.Announcement1 %></p>
+                </div>
+                <div class="announcment-contents">
+                    <p>&#8226; <%= data.Announcements.Announcement2 %></p>
+                </div>
+                <div class="announcment-contents">
+                    <p>&#8226; <%= data.Announcements.Announcement3 %></p>
+                </div>
+                <div class="announcment-contents">
+                    <p>&#8226; <%= data.Announcements.Announcement4 %></p>
+                </div>
+            </div>
+            <div class="slideshow-container">
+                <div class="mySlides">
+                    <img src="/slideshow1.png" style="width:100%">
+                </div>
+                <div class="mySlides">
+                    <img src="/slideshow2.png" style="width:100%">
+                </div>
+                <div class="mySlides">
+                    <img src="/slideshow3.png" style="width:100%">
+                </div>
+                <div style="margin-left: 45%; margin-top: 10px;">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+
+</body>
+
+</html>

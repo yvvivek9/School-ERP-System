@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Assignments</title>
+    <link rel="stylesheet" href="/styles_overall.css">
+    <script type="text/javascript" src="/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="/functions.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="header">
+        <div onclick="nav_bar()" style="flex: 55%">
+            <img id="nav_logo" src="/nav_logo.png">
+        </div>
+        <div style="flex: 7%">
+            <img src="/<%= data.Name %>.png" style="border-radius:50%; height:80px; margin-top:10px">
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Welcome <%= data.Name %> ,</p>
+            <p>Class: <%= data.Class %> ,</p>
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Student ID: <%= data.StudentID %>, </p>
+            <p>Section: <%= data.Section %>, </p>
+        </div>
+        <div style="flex: 4%">
+            <form id="logout" action="/login" method="get">
+                <img src="/logout.png" id="logout-button" onclick="logout()">
+            </form>
+        </div>
+    </div>
+    <div id="nav_menu">
+        <form action="/student/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Home">
+        </form>
+        <form action="/student/timetable/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Time Table">
+        </form>
+        <form action="/student/attendance/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Attendance">
+        </form>
+        <form action="/student/results/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Results">
+        </form>
+        <form action="/student/assignments/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Assignments">
+        </form>
+        <form action="/student/testportal/?id=<%= data._id %>&subject=search" method="post">
+            <input type="submit" class="nav_menu_link" value="Test Portal">
+        </form>
+    </div>
+    <div id="main" style="padding-top: 150px;">
+        <div id="content">
+            <% var x = Object.values(data.Assignments);
+                var i = 1;
+                x.forEach(showassignment);
+                function showassignment(x){ %>
+            <div class="assignment-view">
+                <h2 style="color: black;">Assignment <%= i %></h2>
+                <p style="font-size: 20px;"><%= x.Description %></p>
+                <% if(x.Marks === "NA") { %>
+                    <form action="/student/saveassignments/?name=<%= data.Name %>&assignment=assignment<%= i %>&id=<%= data._id %>" method="post" enctype="multipart/form-data">
+                        <input type="file" id="assignment<%= i %>" name="assignment" style="display: none;" onchange="this.form.submit()" />
+                        <label for="assignment<%= i %>" class="btn btn-primary" style="margin-left: 60%; margin-top: 20px;">Choose file</label>
+                        <p style="margin-left: 55%; margin-top: 10px; font-size: 15px; color: black"><span style="color: red; font-size: 20px;">*</span>Only pdf format supported</p>
+                    </form>
+                <% } else { %>
+                    <p style="font-size: 20px;">Marks: <%= x.Marks %></p>
+                <% } %>
+            </div>
+            <% i++; } %>
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+</body>
+
+</html>

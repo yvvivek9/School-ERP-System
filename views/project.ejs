@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <title>
+            Companies Database
+        </title>
+    </head>
+    <style type="text/css">
+        html{
+            padding: 0px;
+            margin: 0px;
+        }
+        body{
+            background-image: "project-background.jpeg";
+        }
+        #show-output{
+            margin-top: 50px;
+            margin-left: 10%;
+            width: 80%;
+            height: auto;
+        }
+        #take-input{
+            margin-left: 10%;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 20px;
+            border: 5px solid black;
+            width: 80%;
+            height: auto;
+        }
+        .btn{
+            margin-top: 25px;
+            margin-left: 45%;
+        }
+        .table{
+            margin-top: 50px;
+        }
+    </style>
+    <script type="text/javascript">
+
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <body>
+        <div id="show-output">
+            <h1 style="text-align: center;">List of Companies</h1>
+            <table class="table">
+                <theader>
+                    <th>Name</th>
+                    <th>Rank</th>
+                    <th>Website</th>
+                    <th>Location</th>
+                    <th>Employee Size</th>
+                    <th>Revenue</th>
+                </theader>
+                <tbody>
+                    <% data.forEach(myfunc);
+                        function myfunc(x){ %>
+                    <tr>
+                    <td><%= x.Name %></td>
+                    <td><%= x.Rank %></td>
+                    <td><%= x.Website %></td>
+                    <td><%= x.Location %></td>
+                    <td><%= x.EmployeeSize %></td>
+                    <td><%= x.Revenue %></td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div id="take-input">
+            <h1>Insert a company</h1>
+            <form action="/" method="post">
+                <label for="company-name">Name of the Company:</label>
+                <input type="text" name="name" class="form-control" id="company-name" />
+                <label for="company-rank">Rank of the Company:</label>
+                <input type="text" name="rank" class="form-control" id="company-rank" />
+                <label for="company-website">Website of the Company:</label>
+                <input type="text" name="website" class="form-control" id="company-website" />
+                <label for="company-location">Location of the Company:</label>
+                <input type="text" name="location" class="form-control" id="company-location" />
+                <label for="employee-size">Employee size:</label>
+                <input type="text" name="employeesize" class="form-control" id="employee-size" />
+                <label for="company-revenue">Revenue of the Company:</label>
+                <input type="text" name="revenue" class="form-control" id="company-revenue" />
+                <input type="submit" class="btn btn-success" />
+            </form>
+        </div>
+    </body>
+</html>

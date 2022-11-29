@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Give Notes</title>
+    <link rel="stylesheet" href="/styles_overall.css">
+    <script type="text/javascript" src="/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="/functions.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="header">
+        <div onclick="nav_bar()" style="flex: 55%">
+            <img id="nav_logo" src="/nav_logo.png">
+        </div>
+        <div style="flex: 7%">
+            <img src="/<%= data.Name %>.png" style="border-radius:50%; height:80px; margin-top:10px">
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p style="margin-top: 20px">Welcome <%= data.Name %> ,</p>
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Teacher ID: <%= data.TeacherID %>, </p>
+            <p>Subject: <%= data.Subject %>, </p>
+        </div>
+        <div style="flex: 4%">
+            <form id="logout" action="/login" method="get">
+                <img src="/logout.png" id="logout-button" onclick="logout()">
+            </form>
+        </div>
+    </div>
+    <div id="nav_menu">
+        <form action="/teacher/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Home">
+        </form>
+        <form action="/teacher/timetable/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Time Table" />
+        </form>
+        <form action="/teacher/attendance/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Attendance">
+        </form>
+        <form action="/teacher/results/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Results">
+        </form>
+        <form action="/teacher/notes/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Notes">
+        </form>
+        <form action="/teacher/assignments/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Assignments">
+        </form>
+        <form action="/teacher/gassignments/?id=<%= data._id %>&search=find" method="post">
+            <input type="submit" class="nav_menu_link" value="G.Assignments">
+        </form>
+        <form action="/teacher/testportal/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Test Portal">
+        </form>
+    </div>
+    <div id="main">
+        <div id="content">
+            <form action="/teacher/notes/save?id=<%= data._id %>" method="post" enctype="multipart/form-data">
+                <select name="class" class="dropdown">
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                    <option value="6">6</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                    <option value="ntg" selected>Select Class</option>
+                </select>
+                <select name="subject" class="dropdown">
+                    <option value="english">English</option>
+                    <option value="hindi">Hindi</option>
+                    <option value="physics">Physics</option>
+                    <option value="chemistry">Chemistry</option>
+                    <option value="biology">Biology</option>
+                    <option value="maths">Maths</option>
+                    <option value="social">Social</option>
+                    <option value="ntg" selected>Select Subject</option>
+                </select>
+                <input type="file" id="notes" name="notes" style="display: none;" onchange="this.form.submit()" />
+                <label for="notes" class="btn btn-primary" style="position: relative; top: -5px; left: 100px">Choose file</label>
+            </form>
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+
+</body>
+
+</html>

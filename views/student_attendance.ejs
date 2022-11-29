@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Attendance</title>
+    <link rel="stylesheet" href="/styles_overall.css">
+    <script type="text/javascript" src="/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="/functions.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="header">
+        <div onclick="nav_bar()" style="flex: 55%">
+            <img id="nav_logo" src="/nav_logo.png">
+        </div>
+        <div style="flex: 7%">
+            <img src="/<%= data.Name %>.png" style="border-radius:50%; height:80px; margin-top:10px">
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Welcome <%= data.Name %> ,</p>
+            <p>Class: <%= data.Class %> ,</p>
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Student ID: <%= data.StudentID %>, </p>
+            <p>Section: <%= data.Section %>, </p>
+        </div>
+        <div style="flex: 4%">
+            <form id="logout" action="/login" method="get">
+                <img src="/logout.png" id="logout-button" onclick="logout()">
+            </form>
+        </div>
+    </div>
+    <div id="nav_menu">
+        <form action="/student/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Home">
+        </form>
+        <form action="/student/timetable/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Time Table">
+        </form>
+        <form action="/student/attendance/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Attendance">
+        </form>
+        <form action="/student/results/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Results">
+        </form>
+        <form action="/student/assignments/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Assignments">
+        </form>
+        <form action="/student/testportal/?id=<%= data._id %>&subject=search" method="post">
+            <input type="submit" class="nav_menu_link" value="Test Portal">
+        </form>
+    </div>
+    <div id="main">
+        <div id="content">
+            <table id="timetable">
+                <tbody>
+                    <tr>
+                        <th class="timetable table-heading">Subject</th>
+                        <th class="timetable table-heading">Attendance</th>
+                    </tr>
+                    <tr>
+                        <th class="timetable">English</th>
+                        <td class="timetable">
+                            <%= data.Attendance.English %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="timetable">Hindi</th>
+                        <td class="timetable">
+                            <%= data.Attendance.Hindi %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="timetable">Physics</th>
+                        <td class="timetable">
+                            <%= data.Attendance.Physics %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="timetable">Chemistry</th>
+                        <td class="timetable">
+                            <%= data.Attendance.Chemistry %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="timetable">Biology</th>
+                        <td class="timetable">
+                            <%= data.Attendance.Biology %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="timetable">Maths</th>
+                        <td class="timetable">
+                            <%= data.Attendance.Maths %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="timetable">Social</th>
+                        <td class="timetable">
+                            <%= data.Attendance.Social %>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+</body>
+
+</html>

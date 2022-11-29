@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Remove Student</title>
+    <link rel="stylesheet" href="/styles_overall.css">
+    <script type="text/javascript" src="/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript">
+        function nav_bar() {
+            if (document.getElementById("nav_menu").style.width === "230px") {
+                document.getElementById("nav_menu").style.width = "0px";
+                $(".nav_menu_link").fadeOut(50);
+            }
+            else {
+                document.getElementById("nav_menu").style.width = "230px";
+                $(".nav_menu_link").delay(500).fadeIn(500);
+            }
+        }
+        function logout() {
+            document.getElementById("logout").submit();
+        }
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="header">
+        <div onclick="nav_bar()" style="flex: 55%">
+            <img id="nav_logo" src="/nav_logo.png">
+        </div>
+        <div style="flex: 7%">
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Welcome Admin,</p>
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+
+        </div>
+        <div style="flex: 4%">
+            <form id="logout" action="/login" method="get">
+                <img src="/logout.png" id="logout-button" onclick="logout()">
+            </form>
+        </div>
+    </div>
+    <div id="nav_menu">
+        <form action="/admin/add-student" method="post">
+            <input type="submit" class="nav_menu_link" value="Add Student" />
+        </form>
+        <form action="/admin/remove-student" method="post">
+            <input type="submit" class="nav_menu_link" value="Remove Student" />
+        </form>
+        <form action="/admin/add-teacher" method="post">
+            <input type="submit" class="nav_menu_link" value="Add Teacher" />
+        </form>
+        <form action="/admin/remove-teacher" method="post">
+            <input type="submit" class="nav_menu_link" value="Remove Teacher" />
+        </form>
+    </div>
+    <div id="main">
+        <div id="content">
+            <% data.forEach(myfunc);
+                function myfunc(x){ %>
+            <form action="/admin/remove-teacher/delete?id=<%= x._id %>" method="post">
+                <div class="delete">
+                    <p style="flex:37%;">Name: <%= x.Name %></p>
+                    <p style="flex:37%;">Subject: <%= x.Subject %></p>
+                    <input type="submit" class="delete-button" value="Delete" />
+                </div>
+            </form>
+            <% } %>
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+
+</body>
+
+</html>

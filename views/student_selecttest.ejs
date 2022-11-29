@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test Portal</title>
+    <link rel="stylesheet" href="/styles_overall.css">
+    <script type="text/javascript" src="/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="/functions.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script type="text/javascript">
+        function notest() {
+            alert("No test available");
+        }
+    </script>
+</head>
+
+<body>
+    <div id="header">
+        <div onclick="nav_bar()" style="flex: 55%">
+            <img id="nav_logo" src="/nav_logo.png">
+        </div>
+        <div style="flex: 7%">
+            <img src="/<%= data.Name %>.png" style="border-radius:50%; height:80px; margin-top:10px">
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Welcome <%= data.Name %> ,</p>
+            <p>Class: <%= data.Class %> ,</p>
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Student ID: <%= data.StudentID %>, </p>
+            <p>Section: <%= data.Section %>, </p>
+        </div>
+        <div style="flex: 4%">
+            <form id="logout" action="/login" method="get">
+                <img src="/logout.png" id="logout-button" onclick="logout()">
+            </form>
+        </div>
+    </div>
+    <div id="nav_menu">
+        <form action="/student/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Home">
+        </form>
+        <form action="/student/timetable/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Time Table" />
+        </form>
+        <form action="/student/attendance/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Attendance">
+        </form>
+        <form action="/student/results/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Results">
+        </form>
+        <form action="/student/notes/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Notes">
+        </form>
+        <form action="/student/assignments/?id=<%= data._id %>" method="post">
+            <input type="submit" class="nav_menu_link" value="Assignments">
+        </form>
+        <form action="/student/testportal/?id=<%= data._id %>&subject=search" method="post">
+            <input type="submit" class="nav_menu_link" value="Test Portal">
+        </form>
+    </div>
+    <div id="main">
+        <div id="content">
+            <form action="/student/testportal/?id=<%= data._id %>&subject=english" method="post">
+                <% if(data.EnglishMarks === "NA") { %>
+                <input type="submit" id="select-test" value="English" style="margin-top: 0px" />
+                <% } else { %>
+                <input type="button" id="select-test" value="English" style="margin-top: 0px" onclick="notest()" />
+                <p id="display-marks">You scored: <%= data.EnglishMarks %> Marks</p>
+                <% } %>
+            </form>
+            <form action="/student/testportal/?id=<%= data._id %>&subject=hindi" method="post">
+                <% if(data.HindiMarks === "NA") { %>
+                <input type="submit" id="select-test" value="Hindi" />
+                <% } else { %>
+                <input type="button" id="select-test" value="Hindi" onclick="notest()" />
+                <p id="display-marks">You scored: <%= data.HindiMarks %> Marks</p>
+                <% } %>
+            </form>
+            <form action="/student/testportal/?id=<%= data._id %>&subject=physics" method="post">
+                <% if(data.PhysicsMarks === "NA") { %>
+                <input type="submit" id="select-test" value="Physics" />
+                <% } else { %>
+                <input type="button" id="select-test" value="Physics" onclick="notest()" />
+                <p id="display-marks">You scored: <%= data.PhysicsMarks %> Marks</p>
+                <% } %>
+            </form>
+            <form action="/student/testportal/?id=<%= data._id %>&subject=chemistry" method="post">
+                <% if(data.ChemistryMarks === "NA") { %>
+                <input type="submit" id="select-test" value="Chemistry" />
+                <% } else { %>
+                <input type="button" id="select-test" value="Chemistry" onclick="notest()" />
+                <p id="display-marks">You scored: <%= data.ChemistryMarks %> Marks</p>
+                <% } %>
+            </form>
+            <form action="/student/testportal/?id=<%= data._id %>&subject=biology" method="post">
+                <% if(data.BiologyMarks === "NA") { %>
+                <input type="submit" id="select-test" value="Biology" />
+                <% } else { %>
+                <input type="button" id="select-test" value="Biology" onclick="notest()" />
+                <p id="display-marks">You scored: <%= data.BiologyMarks %> Marks</p>
+                <% } %>
+            </form>
+            <form action="/student/testportal/?id=<%= data._id %>&subject=maths" method="post">
+                <% if(data.MathsMarks === "NA") { %>
+                <input type="submit" id="select-test" value="Maths" />
+                <% } else { %>
+                <input type="button" id="select-test" value="Maths" onclick="notest()" />
+                <p id="display-marks">You scored: <%= data.MathsMarks %> Marks</p>
+                <% } %>
+            </form>
+            <form action="/student/testportal/?id=<%= data._id %>&subject=social" method="post">
+                <% if(data.SocialMarks === "NA") { %>
+                <input type="submit" id="select-test" value="Social" />
+                <% } else { %>
+                <input type="button" id="select-test" value="Social" onclick="notest()" />
+                <p id="display-marks">You scored: <%= data.SocialMarks %> Marks</p>
+                <% } %>
+            </form>
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+
+</body>
+
+</html>

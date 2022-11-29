@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Portal</title>
+    <link rel="stylesheet" href="/styles_overall.css">
+    <script type="text/javascript" src="/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript">
+        function nav_bar() {
+            if (document.getElementById("nav_menu").style.width === "230px") {
+                document.getElementById("nav_menu").style.width = "0px";
+                $(".nav_menu_link").fadeOut(50);
+            }
+            else {
+                document.getElementById("nav_menu").style.width = "230px";
+                $(".nav_menu_link").delay(500).fadeIn(500);
+            }
+        }
+        function logout() {
+            document.getElementById("logout").submit();
+        }
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="header">
+        <div onclick="nav_bar()" style="flex: 55%">
+            <img id="nav_logo" src="/nav_logo.png">
+        </div>
+        <div style="flex: 7%">
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+            <p>Welcome Admin,</p>
+        </div>
+        <div style="flex: 15%; font-size:20px; color:white; margin-top:15px">
+
+        </div>
+        <div style="flex: 4%">
+            <form id="logout" action="/login" method="get">
+                <img src="/logout.png" id="logout-button" onclick="logout()">
+            </form>
+        </div>
+    </div>
+    <div id="nav_menu">
+        <form action="/admin/add-student" method="post">
+            <input type="submit" class="nav_menu_link" value="Add Student" />
+        </form>
+        <form action="/admin/remove-student" method="post">
+            <input type="submit" class="nav_menu_link" value="Remove Student" />
+        </form>
+        <form action="/admin/add-teacher" method="post">
+            <input type="submit" class="nav_menu_link" value="Add Teacher" />
+        </form>
+        <form action="/admin/remove-teacher" method="post">
+            <input type="submit" class="nav_menu_link" value="Remove Teacher" />
+        </form>
+    </div>
+    <div id="main">
+        <div id="content" style="display: flex">
+            <div id="announcments">
+                <div class="announcment-contents"
+                    style="background-color: rgb(107, 22, 22); color: white; border-radius: 10px; font-size: 30px;">
+                    <p>Announcements &#128226;</p>
+                </div>
+                <form action="/admin/save-announcements" method="post">
+                <div class="announcment-contents">
+                    <input type="text" name="announcement1" placeholder="Announcement 1" />
+                </div>
+                <div class="announcment-contents">
+                    <input type="text" name="announcement2" placeholder="Announcement 2" />
+                </div>
+                <div class="announcment-contents">
+                    <input type="text" name="announcement3" placeholder="Announcement 3" />
+                </div>
+                <div class="announcment-contents">
+                    <input type="text" name="announcement4" placeholder="Announcement 4" />
+                </div>
+                <input type="submit" class="btn btn-success" style="position: relative; top: 30px; left: 50%;"/>
+                </form>
+            </div>
+            <div class="slideshow-container">
+                <form action="/admin/save-slideshow?name=slideshow1" method="post" enctype="multipart/form-data">
+                    <input type="file" id="slideshow" name="slideshow" style="display: none;" onchange="this.form.submit()" />
+                    <label for="slideshow" class="slideshow-upload btn btn-primary">Photo of Slideshow 1</label>
+                </form>
+                <form action="/admin/save-slideshow?name=slideshow2" method="post" enctype="multipart/form-data">
+                    <input type="file" id="slideshow" name="slideshow" style="display: none;" onchange="this.form.submit()" />
+                    <label for="slideshow" class="slideshow-upload btn btn-primary">Photo of Slideshow 2</label>
+                </form>
+                <form action="/admin/save-slideshow?name=slideshow3" method="post" enctype="multipart/form-data">
+                    <input type="file" id="slideshow" name="slideshow" style="display: none;" onchange="this.form.submit()" />
+                    <label for="slideshow" class="slideshow-upload btn btn-primary">Photo of Slideshow 3</label>
+                </form>
+            </div>
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+
+</body>
+
+</html>
